@@ -1,0 +1,9 @@
+_Resharper*
+Backup
+obj
+bin
+*.suo
+~$*
+*.user
+*.sdf
+Indexes

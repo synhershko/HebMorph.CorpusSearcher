@@ -1,0 +1,25 @@
+﻿@model IEnumerable<HebMorph.CorpusSearcher.ViewModels.SearchResult>
+
+@{
+    ViewBag.Title = "Search results";
+    var q = (HebMorph.CorpusSearcher.ViewModels.SearchQuery)ViewBag.Query;
+}
+
+<h2>Search results - תוצאות חיפוש</h2>
+<p>@ViewBag.TotalResults results found</p>
+
+<p style="text-align:center">
+@Html.Pager(q.CurrentPage, HebMorph.CorpusSearcher.Core.Index.Instance.PageSize, (int)ViewBag.TotalResults, q.GetSearchUrl())
+</p>
+
+<div class="searchResults">
+@foreach (var result in Model)
+{
+    <h3><a href="ViewDocument?corpusName=@ViewBag.CorpusName&indexDocId=@result.LuceneDocId&height=450&width=800" class="thickbox">@result.Title</a> (@String.Format("{0:0.00}", result.Score))</h3>
+    <p>@result.Fragment</p>
+}
+</div>
+
+<p style="text-align:center">
+@Html.Pager(q.CurrentPage, HebMorph.CorpusSearcher.Core.Index.Instance.PageSize, (int)ViewBag.TotalResults, q.GetSearchUrl())
+</p>

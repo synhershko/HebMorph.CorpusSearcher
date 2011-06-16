@@ -1,0 +1,13 @@
+﻿@model HebMorph.CorpusSearcher.ViewModels.SearchQuery
+<div class="rtlContainer">
+@using (Html.BeginForm("Search", "Home", FormMethod.Get, new { Class = "searchform" }))
+{
+    <p><input type="text" class="textbox" id="query" name="query" value="@Model.Query" /><input class="button" type="submit" value="חפש" /></p>
+    <p>&nbsp;</p>
+    <p><b>קורפוס:</b> @Html.DropDownList("corpusName", Model.AvailableIndexes)</p>
+    <p><b>סוג חיפוש:</b></p>
+    <p>@Html.RadioButton("searchType", "Morphologic", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.Morphologic) מורפולוגי</p>
+    <p>@Html.RadioButton("searchType", "AsTyped", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.AsTyped) כפי שהוקלד</p>
+    <p>@Html.RadioButton("searchType", "Simple", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.Simple) ללא שימוש ב-HebMorph</p>
+}
+</div>
