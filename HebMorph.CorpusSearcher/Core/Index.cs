@@ -266,8 +266,8 @@ namespace HebMorph.CorpusSearcher.Core
 
 			// Init
 			var fvh = new FastVectorHighlighter(FastVectorHighlighter.DEFAULT_PHRASE_HIGHLIGHT,
-			                                    FastVectorHighlighter.DEFAULT_FIELD_MATCH,
-			                                    new SimpleFragListBuilder(), new HtmlFragmentsBuilder());
+												FastVectorHighlighter.DEFAULT_FIELD_MATCH,
+												new SimpleFragListBuilder(), new HtmlFragmentsBuilder());
 
 			var query = HebrewMultiFieldQueryParser.Parse(Lucene.Net.Util.Version.LUCENE_29, searchQuery.Query,
 			                                              searchFields, searchFlags,
@@ -287,8 +287,6 @@ namespace HebMorph.CorpusSearcher.Core
 				var d = searcher.Doc(hits[i].doc);
 				var fq = fvh.GetFieldQuery(query);
 				var fragment = fvh.GetBestFragment(fq, searcher.GetIndexReader(), hits[i].doc, "Content", 300);
-
-				var a = d.Get("Title");
 
 				ret.Add(new SearchResult
 				        	{

@@ -13,22 +13,23 @@ namespace HebMorph.CorpusSearcher.Core
 	public class HtmlFragmentsBuilder : BaseFragmentsBuilder
 	{
 		/// <summary>
-        /// a constructor.
-        /// </summary>
-        public HtmlFragmentsBuilder() : base()
-        {
-        }
+		/// a constructor.
+		/// </summary>
+		public HtmlFragmentsBuilder()
+			: base()
+		{
+		}
 
-        /// <summary>
-        /// a constructor.
-        /// </summary>
-        /// <param name="preTags">array of pre-tags for markup terms</param>
-        /// <param name="postTags">array of post-tags for markup terms</param>
+		/// <summary>
+		/// a constructor.
+		/// </summary>
+		/// <param name="preTags">array of pre-tags for markup terms</param>
+		/// <param name="postTags">array of post-tags for markup terms</param>
 		public HtmlFragmentsBuilder(String[] preTags, String[] postTags)
-            : base(preTags, postTags)
-        {
+			: base(preTags, postTags)
+		{
 
-        }
+		}
 
 		/// <summary>
 		/// do nothing. return the source list.
@@ -53,17 +54,22 @@ namespace HebMorph.CorpusSearcher.Core
 			return buffer.ToString().Substring(startOffset, eo - startOffset);
 		}
 
+		/// <summary>
+		/// Gets the field text, after applying custom filtering
+		/// </summary>
+		/// <param name="field"></param>
+		/// <returns></returns>
 		protected string GetFilteredFieldText(Field field)
 		{
 			var theStream = new MemoryStream(Encoding.UTF8.GetBytes(field.StringValue()));
-            var reader = CharReader.Get(new StreamReader(theStream));
+			var reader = CharReader.Get(new StreamReader(theStream));
 			reader = new HTMLStripCharFilter(reader);
 
 			int r;
 			var sb = new StringBuilder();
 			while ((r = reader.Read()) != -1)
 			{
-				sb.Append((char) r);
+				sb.Append((char)r);
 			}
 			return sb.ToString();
 		}
