@@ -1,4 +1,5 @@
-﻿using HebMorph.CorpusReaders;
+﻿using System.Text;
+using HebMorph.CorpusReaders;
 
 namespace HebMorph.CorpusSearcher.Core
 {
@@ -26,10 +27,20 @@ namespace HebMorph.CorpusSearcher.Core
 						return string.Empty;
 
 					// make up for dumb <br> handling by the formatter
-					while (htmlContent.IndexOf("<br /><br />") > 0)
-						htmlContent = htmlContent.Replace("<br /><br />", "<br />");
+					int loc = 0, tmp = 0;
+					var sb = new StringBuilder(htmlContent.Length);
+					while ( (tmp = htmlContent.IndexOf("<br /><br />", loc)) > 0)
+					{
+						sb.Append(htmlContent.Substring(loc, tmp - loc));
+						sb.Append("<br />");
+						tmp += "<br /><br />".Length;
+						while (tmp + "<br />".Length < htmlContent.Length && "<br />".Equals(htmlContent.Substring(tmp, "<br />".Length)))
+							tmp += "<br />".Length;
+						loc = tmp;
+					}
+					sb.Append(htmlContent.Substring(loc, htmlContent.Length - loc));
 
-					return htmlContent.Trim();
+					return sb.ToString().Trim();
 			}
 			return doc.Content; // either a fallback or it is already HTML
 		}
