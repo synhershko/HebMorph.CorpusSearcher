@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using HebMorph.CorpusSearcher.Core;
+using HebMorph.CorpusSearcher.Helpers;
 using Lucene.Net.QueryParsers;
 
 namespace HebMorph.CorpusSearcher.ViewModels
@@ -22,7 +23,7 @@ namespace HebMorph.CorpusSearcher.ViewModels
 
 		public string GetSearchUrl()
 		{
-			return string.Format("/Search?corpusName={0}&query={1}&searchType={2}&page=", IndexName, Query, SearchType);
+			return string.Format("/Search?corpusName={0}&query={1}&searchType={2}&page=", IndexName, Query.UrlEncode(), SearchType);
 		}
 	}
 }

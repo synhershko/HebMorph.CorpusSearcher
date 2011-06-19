@@ -13,7 +13,7 @@ namespace HebMorph.CorpusSearcher.Helpers
 			var seed = currentPage % currentPageSize == 0 ? currentPage : currentPage - (currentPage % currentPageSize);
 
 			if (currentPage > 1)
-				sb1.AppendLine(String.Format("<a href=\"{0}{1}\">Previous</a>", urlPrefix, currentPage));
+				sb1.AppendLine(String.Format("<a href=\"{0}{1}\">Previous</a>", urlPrefix, currentPage - 1));
 
 			if (currentPage - currentPageSize >= 0)
 				sb1.AppendLine(String.Format("<a href=\"{0}{1}\">...</a>", urlPrefix, (currentPage - currentPageSize) + 1));
@@ -30,7 +30,7 @@ namespace HebMorph.CorpusSearcher.Helpers
 				sb1.AppendLine(String.Format("<a href=\"{0}{1}\">...</a>", urlPrefix, (currentPage + currentPageSize) + 1));
 
 			if (currentPage < (Math.Round((totalRecords / 10) + 0.5) - 1))
-				sb1.AppendLine(String.Format("<a href=\"{0}{1}\">Next</a>", urlPrefix, currentPage + 2));
+				sb1.AppendLine(String.Format("<a href=\"{0}{1}\">Next</a>", urlPrefix, currentPage + 1));
 
 			return MvcHtmlString.Create(sb1.ToString());
 		}
