@@ -27,8 +27,8 @@ namespace HebMorph.CorpusSearcher.Core
 		protected Index()
 		{
 			PageSize = 15;
-			IndexesStoragePath = HttpContext.Current.Server.MapPath("~/App_Data/Indexes");
-			HSpellDataFilesPath = HttpContext.Current.Server.MapPath("~/App_Data/hspell-data-files");
+			IndexesStoragePath = Settings.IndexesPath;
+			HSpellDataFilesPath = Settings.HSepllPath;
 			UpdateIndexesList();
 		}
 
@@ -50,6 +50,9 @@ namespace HebMorph.CorpusSearcher.Core
 
 		public void UpdateIndexesList()
 		{
+			if (!Directory.Exists(IndexesStoragePath))
+				return;
+
 			indexSubFolders = Directory.GetDirectories(IndexesStoragePath);
 			for (var i=0; i < indexSubFolders.Length;i++)
 			{
@@ -266,8 +269,8 @@ namespace HebMorph.CorpusSearcher.Core
 
 			// Init
 			var fvh = new FastVectorHighlighter(FastVectorHighlighter.DEFAULT_PHRASE_HIGHLIGHT,
-												FastVectorHighlighter.DEFAULT_FIELD_MATCH,
-												new SimpleFragListBuilder(), new HtmlFragmentsBuilder());
+			                                    FastVectorHighlighter.DEFAULT_FIELD_MATCH,
+			                                    new SimpleFragListBuilder(), new HtmlFragmentsBuilder());
 
 			var query = HebrewMultiFieldQueryParser.Parse(Lucene.Net.Util.Version.LUCENE_29, searchQuery.Query,
 			                                              searchFields, searchFlags,

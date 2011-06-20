@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -86,6 +87,7 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\AvailableIndexes.cs" />
     <Compile Include="ViewModels\Document.cs" />
     <Compile Include="ViewModels\SearchQuery.cs" />
@@ -93,6 +95,23 @@
     <Compile Include="ViewModels\SystemStatus.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\bullet.gif" />
+    <Content Include="Content\images\button-bg.jpg" />
+    <Content Include="Content\images\clock.gif" />
+    <Content Include="Content\images\comment.gif" />
+    <Content Include="Content\images\content.jpg" />
+    <Content Include="Content\images\dots.jpg" />
+    <Content Include="Content\images\Envision.css" />
+    <Content Include="Content\images\firefox-gray.jpg" />
+    <Content Include="Content\images\footer.jpg" />
+    <Content Include="Content\images\header.jpg" />
+    <Content Include="Content\images\loadingAnimation.gif" />
+    <Content Include="Content\images\menu.jpg" />
+    <Content Include="Content\images\page.gif" />
+    <Content Include="Content\images\quote.gif" />
+    <Content Include="Content\images\square-green.png" />
+    <Content Include="Content\thickbox-compressed.js" />
+    <Content Include="Content\thickbox.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
