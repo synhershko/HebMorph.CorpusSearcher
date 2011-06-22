@@ -36,8 +36,14 @@ namespace HebMorph.CorpusSearcher
 			get { return indexesPath ?? (indexesPath = Path.Combine(BasePath, "Indexes")); }
 		}
 
+		public static string PagesPath
+		{
+			get { return indexesPath ?? (indexesPath = Path.Combine(BasePath, "Pages")); }
+		}
+
 		private static string baseDataPath;
 		private static string hspellPath;
 		private static string indexesPath;
+		private static string pagesPath;
 	}
 }
