@@ -19,7 +19,7 @@ namespace HebMorph.CorpusSearcher.Controllers
 
 		public ActionResult ExecuteIndexing(string corpusName, string specsString)
 		{
-			if (string.IsNullOrEmpty(specsString) || string.IsNullOrEmpty(corpusName))
+			if (!Settings.AllowIndexing || string.IsNullOrEmpty(specsString) || string.IsNullOrEmpty(corpusName))
 				return RedirectToAction("Status", "Home");
 
 			var corpusReader = Core.Index.GetCorpusReader(specsString);

@@ -23,6 +23,19 @@ namespace HebMorph.CorpusSearcher
 			}
 		}
 
+		public static bool AllowIndexing
+		{
+			get
+			{
+				var webConfig = WebConfigurationManager.OpenWebConfiguration("~/Web.config");
+				var docsPathSetting = webConfig.AppSettings.Settings["AllowIndexing"];
+				var ret = false;
+				if (docsPathSetting != null)
+					ret = bool.TryParse(docsPathSetting.Value, out ret);
+				return ret;
+			}
+		}
+
 		public static string HSepllPath
 		{
 			get

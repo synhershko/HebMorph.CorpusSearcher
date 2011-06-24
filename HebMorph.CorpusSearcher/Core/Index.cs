@@ -216,8 +216,10 @@ namespace HebMorph.CorpusSearcher.Core
 		{
 			var configObject = JObject.Parse(specsString);
 			if (configObject["type"].Value<string>() == "wikipedia")
-			{
-				var reader = new CorpusReaders.Wikipedia.WikiDumpReader(configObject["dumpPath"].Value<string>());
+			{ // lamest checks ever here...
+				var dumpPath = Path.GetFullPath(configObject["dumpPath"].Value<string>());
+				if (!File.Exists(dumpPath)) return null;
+				var reader = new CorpusReaders.Wikipedia.WikiDumpReader(dumpPath);
 				return reader;
 			}
 			return null;
