@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using HebMorph.CorpusSearcher.ViewModels;
+using Lucene.Net.QueryParsers;
 
 namespace HebMorph.CorpusSearcher.Controllers
 {
@@ -45,7 +47,6 @@ namespace HebMorph.CorpusSearcher.Controllers
 			if (pageNumber <= 0)
 				pageNumber = 1;
 
-
 			Core.Index.SearchType type;
 			if (!Enum.TryParse(searchType, true, out type))
 				type = Core.Index.SearchType.Morphologic;
@@ -60,14 +61,22 @@ namespace HebMorph.CorpusSearcher.Controllers
 							SearchType = type,
 			        	};
 
-			int totalResults;
-			var results = Core.Index.Instance.Search(q, out totalResults);
+			int totalResults = 0;
+			IEnumerable<SearchResult> results = null;
+			try
+			{
+				results = Core.Index.Instance.Search(q, out totalResults);
+			}
+			catch (ParseException ex)
+			{
+				ViewBag.ErrorMessage = "Error: " + ex.Message;
+			}
 
 			ViewBag.TotalResults = totalResults;
 			ViewBag.Query = q;
 			ViewBag.CorpusName = corpusName;
 
-			return View(results);
+			return View(results ?? new List<SearchResult>());
 		}
 
 		public ActionResult ViewDocument(string corpusName, int indexDocId)

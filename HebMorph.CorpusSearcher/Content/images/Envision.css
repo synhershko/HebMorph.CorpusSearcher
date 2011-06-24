@@ -407,3 +407,4 @@ input.button {
 .searchResults h3 {padding-bottom:0;}
 .searchResults h3 a {text-decoration:underline;}
 .searchResults p {padding-top:0;}
+.error {border: 1px solid red; color:Red;}

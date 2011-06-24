@@ -8,6 +8,11 @@
 <h2>Search results - תוצאות חיפוש</h2>
 <p>@ViewBag.TotalResults results found</p>
 
+@if (!string.IsNullOrWhiteSpace(@ViewBag.ErrorMessage))
+{
+<p class="error">@ViewBag.ErrorMessage</p>
+}
+
 <p style="text-align:center">
 @Html.Pager(q.CurrentPage, HebMorph.CorpusSearcher.Core.Index.Instance.PageSize, (int)ViewBag.TotalResults, q.GetSearchUrl())
 </p>
