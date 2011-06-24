@@ -179,7 +179,7 @@ namespace HebMorph.CorpusSearcher.Core
 			IndexingStatus = new IndexingProgressInfo
 			{
 				IndexName = corpusName,
-				Percentage = 0,
+				Percentage = 100,
 				Status = "Optimizing index",
 				IsRunning = true,
 			};
