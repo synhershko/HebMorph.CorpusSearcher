@@ -36,7 +36,7 @@ namespace HebMorph.CorpusSearcher.Core
 		{
 			Morphologic,
 			AsTyped,
-			Simple,
+			LuceneDefault,
 		}
 
 		public static readonly Index Instance = new Index();
@@ -86,8 +86,8 @@ namespace HebMorph.CorpusSearcher.Core
 					return MorphAnalyzer;
 				case SearchType.AsTyped:
 					return CreateHebrewSimpleAnalyzer();
-				case SearchType.Simple:
-					return new SimpleAnalyzer();
+				case SearchType.LuceneDefault:
+					return new HtmlStandardAnalyzer();
 			}
 			return null;
 		}
@@ -116,14 +116,22 @@ namespace HebMorph.CorpusSearcher.Core
 				IsRunning = true,
 			};
 
-			var indexingAnalyzer = new HtmlMorphAnalyzer(MorphAnalyzer);
-			indexingAnalyzer.alwaysSaveMarkedOriginal = true; // to allow for non-morphologic searches too
+			// Create a morphologic analyzer to be used for indexing by default
+			var morphIndexingAnalyzer = new HtmlMorphAnalyzer(MorphAnalyzer);
+			morphIndexingAnalyzer.alwaysSaveMarkedOriginal = true; // to allow for non-morphologic searches too
+			var indexingAnalyzer = new PerFieldAnalyzerWrapper(morphIndexingAnalyzer);
+			
+			// Allow for one field to be indexed using StandardAnalyzer, for the purpose of comparison
+			indexingAnalyzer.AddAnalyzer("TitleDefault", new HtmlStandardAnalyzer());
+			indexingAnalyzer.AddAnalyzer("ContentDefault", new HtmlStandardAnalyzer());
 
+			// Create the indexer
 			var indexPath = Path.Combine(IndexesStoragePath, corpusName);
 			var writer = new IndexWriter(FSDirectory.Open(new DirectoryInfo(indexPath)), indexingAnalyzer, true,
 										 IndexWriter.MaxFieldLength.UNLIMITED);
 			writer.SetUseCompoundFile(false);
 
+			// This will be called whenever a document is read by the provided ICorpusReader
 			corpusReader.OnDocument += corpusDoc =>
 			{
 				var content = corpusDoc.AsHtml();
@@ -132,15 +140,27 @@ namespace HebMorph.CorpusSearcher.Core
 				if (string.IsNullOrEmpty(content))
 					return;
 
+				// Create a new index document
 				var doc = new Document();
 				doc.Add(new Field("Id", corpusDoc.Id, Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS));
+				
+				// Add title field
 				var titleField = new Field("Title", corpusDoc.Title, Field.Store.COMPRESS, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);
 				titleField.SetBoost(3.0f);
 				doc.Add(titleField);
+
+				titleField = new Field("TitleDefault", corpusDoc.Title, Field.Store.NO, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS);
+				titleField.SetBoost(3.0f);
+				doc.Add(titleField);
+				
+				// Add two versions of content - one will be analyzed by HebMorph and the other by Lucene's StandardAnalyzer
 				doc.Add(new Field("Content", content, Field.Store.COMPRESS, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
+				doc.Add(new Field("ContentDefault", content, Field.Store.NO, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
+
 				writer.AddDocument(doc);
 			};
 
+			// Progress reporting
 			corpusReader.OnProgress += (percentage, status, isRunning) =>
 			{
 				IndexingStatus = new IndexingProgressInfo
@@ -164,6 +184,7 @@ namespace HebMorph.CorpusSearcher.Core
 				IsRunning = true,
 			};
 
+			// Clean up and close
 			writer.SetUseCompoundFile(true);
 			writer.Optimize();
 			writer.Close();
@@ -257,6 +278,7 @@ namespace HebMorph.CorpusSearcher.Core
 		}
 
 		private static readonly string[] searchFields = new [] {"Title", "Content"};
+		private static readonly string[] searchFieldsLucenesDefault = new[] { "TitleDefault", "ContentDefault" };
 		private static readonly BooleanClause.Occur[] searchFlags = new[] {BooleanClause.Occur.SHOULD, BooleanClause.Occur.SHOULD};
 
 		public byte PageSize { get; set; }
@@ -270,11 +292,15 @@ namespace HebMorph.CorpusSearcher.Core
 			// Init
 			var fvh = new FastVectorHighlighter(FastVectorHighlighter.DEFAULT_PHRASE_HIGHLIGHT,
 			                                    FastVectorHighlighter.DEFAULT_FIELD_MATCH,
-			                                    new SimpleFragListBuilder(), new HtmlFragmentsBuilder());
+												new SimpleFragListBuilder(),
+												new HtmlFragmentsBuilder("Content", new String[] { "[b]" }, new String[] { "[/b]" }));
 
 			var query = HebrewMultiFieldQueryParser.Parse(Lucene.Net.Util.Version.LUCENE_29, searchQuery.Query,
-			                                              searchFields, searchFlags,
+			                                              searchQuery.SearchType == SearchType.LuceneDefault ? searchFieldsLucenesDefault : searchFields,
+			                                              searchFlags,
 			                                              GetAnalyzer(searchQuery.SearchType));
+
+			var contentFieldName = searchQuery.SearchType == SearchType.LuceneDefault ? "ContentDefault" : "Content";
 
 			// Perform actual search
 			var tsdc = TopScoreDocCollector.create(PageSize * searchQuery.CurrentPage, true);
@@ -289,7 +315,7 @@ namespace HebMorph.CorpusSearcher.Core
 			{
 				var d = searcher.Doc(hits[i].doc);
 				var fq = fvh.GetFieldQuery(query);
-				var fragment = fvh.GetBestFragment(fq, searcher.GetIndexReader(), hits[i].doc, "Content", 300);
+				var fragment = fvh.GetBestFragment(fq, searcher.GetIndexReader(), hits[i].doc, contentFieldName, 400);
 
 				ret.Add(new SearchResult
 				        	{
@@ -297,7 +323,7 @@ namespace HebMorph.CorpusSearcher.Core
 				        		Title = d.Get("Title"),
 				        		Score = hits[i].score,
 				        		LuceneDocId = hits[i].doc,
-								Fragment = MvcHtmlString.Create(fragment),
+								Fragment = MvcHtmlString.Create(fragment.HtmlStripFragment()),
 				        	});
 			}
 			return ret;

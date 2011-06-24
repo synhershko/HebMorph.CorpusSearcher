@@ -44,5 +44,34 @@ namespace HebMorph.CorpusSearcher.Core
 			}
 			return doc.Content; // either a fallback or it is already HTML
 		}
+
+		public static string HtmlStripFragment(this string fragment)
+		{
+			if (string.IsNullOrEmpty(fragment)) return string.Empty;
+
+			var sb = new StringBuilder(fragment.Length);
+			bool withinHtml = false, first = true;
+			foreach (var c in fragment)
+			{
+				if (c == '>')
+				{
+					if (first) sb.Length = 0;
+					withinHtml = false;
+					first = false;
+					continue;
+				}
+				if (withinHtml)
+					continue;
+				if (c == '<')
+				{
+					first = false;
+					withinHtml = true;
+					continue;
+				}
+				sb.Append(c);
+			}
+
+			return sb.Append("...").Replace("[b]", "<b>").Replace("[/b]", "</b>").ToString();
+		}
 	}
 }

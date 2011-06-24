@@ -8,6 +8,6 @@
     <p><b>סוג חיפוש:</b></p>
     <p>@Html.RadioButton("searchType", "Morphologic", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.Morphologic) מורפולוגי</p>
     <p>@Html.RadioButton("searchType", "AsTyped", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.AsTyped) כפי שהוקלד</p>
-    <p>@Html.RadioButton("searchType", "Simple", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.Simple) ללא שימוש ב-HebMorph</p>
+    <p>@Html.RadioButton("searchType", "LuceneDefault", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.LuceneDefault) ללא שימוש ב-HebMorph</p>
 }
 </div>
