@@ -297,10 +297,15 @@ namespace HebMorph.CorpusSearcher.Core
 												new SimpleFragListBuilder(),
 												new HtmlFragmentsBuilder("Content", new String[] { "[b]" }, new String[] { "[/b]" }));
 
-			var query = HebrewMultiFieldQueryParser.Parse(Lucene.Net.Util.Version.LUCENE_29, searchQuery.Query,
-			                                              searchQuery.SearchType == SearchType.LuceneDefault ? searchFieldsLucenesDefault : searchFields,
-			                                              searchFlags,
-			                                              GetAnalyzer(searchQuery.SearchType));
+			Query query = null;
+			if (searchQuery.SearchType == SearchType.LuceneDefault)
+			{
+				query = MultiFieldQueryParser.Parse(Lucene.Net.Util.Version.LUCENE_29, searchQuery.Query,
+				                                    searchFieldsLucenesDefault, searchFlags, GetAnalyzer(searchQuery.SearchType));
+			} else {
+				query = HebrewMultiFieldQueryParser.Parse(Lucene.Net.Util.Version.LUCENE_29, searchQuery.Query,
+				                                          searchFields, searchFlags, GetAnalyzer(searchQuery.SearchType));
+			}
 
 			var contentFieldName = searchQuery.SearchType == SearchType.LuceneDefault ? "ContentDefault" : "Content";
 
