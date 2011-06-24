@@ -40,6 +40,10 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="Lucene.Net.Contrib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\Lucene.Net.Contrib.dll</HintPath>
+    </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
@@ -78,6 +82,7 @@
     <Compile Include="Core\FormattingHelper.cs" />
     <Compile Include="Core\HtmlFregmentsBuilder.cs" />
     <Compile Include="Core\HtmlMorphAnalyzer.cs" />
+    <Compile Include="Core\HtmlStandardAnalyzer.cs" />
     <Compile Include="Core\Index.cs" />
     <Compile Include="Core\WikiFormatter.cs" />
     <Compile Include="Global.asax.cs">
@@ -143,15 +148,11 @@
       <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
       <Name>Lucene.Net.4</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Lucene.Net.Contrib\Lucene.Net.Contrib\Lucene.Net.Contrib.csproj">
-      <Project>{0FA6EE49-518C-4B0D-BB48-B208BC822D70}</Project>
-      <Name>Lucene.Net.Contrib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HebMorph\dotNet\HebMorph\HebMorph.NET4.csproj">
+    <ProjectReference Include="..\..\HebMorph\dotNet\HebMorph\HebMorph.VS2010.csproj">
       <Project>{EF21A9E0-8FEE-43CD-8D60-B3696E033FED}</Project>
       <Name>HebMorph.NET4</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\HebMorph\dotNet\Lucene.Net.Analysis.Hebrew\Lucene.Net.Hebrew.NET4.csproj">
+    <ProjectReference Include="..\..\HebMorph\dotNet\Lucene.Net.Analysis.Hebrew\Lucene.Net.Hebrew.VS2010.csproj">
       <Project>{53318212-385E-457B-8E5F-DDB117032A86}</Project>
       <Name>Lucene.Net.Hebrew.NET4</Name>
     </ProjectReference>

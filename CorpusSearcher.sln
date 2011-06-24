@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HebMorph.CorpusReaders", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucene.Net.4", "..\..\..\Dev\Libraries\Lucene.Net\trunk\C#\src\Lucene.Net\Lucene.Net.4.csproj", "{5D4AD9BE-1FFB-41AB-9943-25737971BF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HebMorph.NET4", "..\HebMorph\dotNet\HebMorph\HebMorph.NET4.csproj", "{EF21A9E0-8FEE-43CD-8D60-B3696E033FED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HebMorph", "..\HebMorph\dotNet\HebMorph\HebMorph.VS2010.csproj", "{EF21A9E0-8FEE-43CD-8D60-B3696E033FED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucene.Net.Hebrew.NET4", "..\HebMorph\dotNet\Lucene.Net.Analysis.Hebrew\Lucene.Net.Hebrew.NET4.csproj", "{53318212-385E-457B-8E5F-DDB117032A86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucene.Net.Hebrew", "..\HebMorph\dotNet\Lucene.Net.Analysis.Hebrew\Lucene.Net.Hebrew.VS2010.csproj", "{53318212-385E-457B-8E5F-DDB117032A86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucene.Net.Contrib", "..\..\Lucene.Net.Contrib\Lucene.Net.Contrib\Lucene.Net.Contrib.csproj", "{0FA6EE49-518C-4B0D-BB48-B208BC822D70}"
 EndProject
