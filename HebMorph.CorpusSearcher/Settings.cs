@@ -54,9 +54,27 @@ namespace HebMorph.CorpusSearcher
 			get { return pagesPath ?? (pagesPath = Path.Combine(BasePath, "Pages")); }
 		}
 
+		public static string GoogleAnalyticsAccount
+		{
+			get
+			{
+				if (baseDataPath == null)
+				{
+					gaAccount = string.Empty;
+					var webConfig = WebConfigurationManager.OpenWebConfiguration("~/Web.config");
+					var gaAccountSetting = webConfig.AppSettings.Settings["GAAccount"];
+					if (gaAccountSetting != null)
+						gaAccount = HttpContext.Current.Server.MapPath(gaAccountSetting.Value);
+				}
+				return gaAccount;
+			}
+		}
+
 		private static string baseDataPath;
 		private static string hspellPath;
 		private static string indexesPath;
 		private static string pagesPath;
+
+		private static string gaAccount;
 	}
 }
