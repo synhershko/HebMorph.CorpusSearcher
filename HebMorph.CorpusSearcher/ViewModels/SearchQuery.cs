@@ -14,13 +14,25 @@ namespace HebMorph.CorpusSearcher.ViewModels
 		}
 
 		public string Query { get; set; }
-		public string IndexName { get; set; }
 		public QueryParser.Operator DefaultOperator { get; set; }
 		public Index.SearchType SearchType { get; set; }
 
-		public int CurrentPage { get; set; }
+		public string IndexName
+		{
+			get { return indexName; }
+			set
+			{
+				if (string.IsNullOrWhiteSpace(value))
+					return;
 
-		public SelectList AvailableIndexes { get; set; }
+				indexName = value;
+				AvailableIndexes = new SelectList(Core.Index.Instance.AvailableIndexes, value);
+			}
+		}
+		private string indexName;
+
+		public SelectList AvailableIndexes { get; private set; }
+		public int CurrentPage { get; set; }
 
 		public string GetSearchUrl()
 		{

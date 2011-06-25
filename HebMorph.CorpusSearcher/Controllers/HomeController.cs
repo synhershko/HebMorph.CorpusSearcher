@@ -38,7 +38,6 @@ namespace HebMorph.CorpusSearcher.Controllers
 			ViewBag.CurrentIndexName = corpusName;
 			var q = new SearchQuery
 			        	{
-			        		AvailableIndexes = new SelectList(Core.Index.Instance.AvailableIndexes, corpusName),
 			        		IndexName = corpusName,
 			        		Query = query,
 							CurrentPage = pageNumber,
