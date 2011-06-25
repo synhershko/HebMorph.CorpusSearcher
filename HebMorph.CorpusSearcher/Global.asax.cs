@@ -18,6 +18,12 @@ namespace HebMorph.CorpusSearcher
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			routes.MapRoute(
+				"ContentPages", // Route name
+				"Pages/{pageName}", // URL with parameters
+				new { controller = "Pages", action = "Index", pageName = UrlParameter.Optional }
+				);
+
+			routes.MapRoute(
 				"Default", // Route name
 				"{action}", // URL with parameters
 				new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
@@ -28,7 +34,6 @@ namespace HebMorph.CorpusSearcher
 				"{controller}/{action}/{id}", // URL with parameters
 				new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
 			);
-
 		}
 
 		protected void Application_Start()

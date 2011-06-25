@@ -10,30 +10,14 @@ namespace HebMorph.CorpusSearcher.Controllers
 	{
 		public ActionResult Index()
 		{
-			ViewBag.Query = new SearchQuery
-			{
-				AvailableIndexes = new SelectList(Core.Index.Instance.AvailableIndexes),
-			};
-
-			return View();
-		}
-
-		public ActionResult About()
-		{
-			ViewBag.Query = new SearchQuery
-			{
-				AvailableIndexes = new SelectList(Core.Index.Instance.AvailableIndexes),
-			};
+			ViewBag.Query = new SearchQuery();
 
 			return View();
 		}
 
 		public ActionResult Status()
 		{
-			ViewBag.Query = new SearchQuery
-			{
-				AvailableIndexes = new SelectList(Core.Index.Instance.AvailableIndexes),
-			};
+			ViewBag.Query = new SearchQuery();
 
 			var curStatus = Core.Index.Instance.IndexingStatus;
 			ViewBag.IndexingStatus = curStatus != null ? curStatus.ToString() : "Idle";
@@ -81,12 +65,7 @@ namespace HebMorph.CorpusSearcher.Controllers
 
 		public ActionResult ViewDocument(string corpusName, int indexDocId)
 		{
-			var a = Request.AcceptTypes;
-
-			ViewBag.Query = new SearchQuery
-			{
-				AvailableIndexes = new SelectList(Core.Index.Instance.AvailableIndexes),
-			};
+			ViewBag.Query = new SearchQuery();
 
 			var doc = Core.Index.Instance.GetDocument(corpusName, indexDocId);
 

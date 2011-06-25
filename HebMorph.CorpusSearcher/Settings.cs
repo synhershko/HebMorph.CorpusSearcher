@@ -51,7 +51,7 @@ namespace HebMorph.CorpusSearcher
 
 		public static string PagesPath
 		{
-			get { return indexesPath ?? (indexesPath = Path.Combine(BasePath, "Pages")); }
+			get { return pagesPath ?? (pagesPath = Path.Combine(BasePath, "Pages")); }
 		}
 
 		private static string baseDataPath;

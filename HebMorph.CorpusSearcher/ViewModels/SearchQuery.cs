@@ -10,6 +10,7 @@ namespace HebMorph.CorpusSearcher.ViewModels
 		public SearchQuery()
 		{
 			SearchType = Index.SearchType.Morphologic;
+			AvailableIndexes = new SelectList(Core.Index.Instance.AvailableIndexes);
 		}
 
 		public string Query { get; set; }

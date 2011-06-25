@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="Z:\Projects\HebMorph\HebMorph.CorpusSearcher\_Publish" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Views/Account/Register.cshtml" publishTime="05/30/2011 17:29:21" />
+    <file relUrl="Views/Home/ViewDocument.cshtml" publishTime="06/16/2011 18:58:54" />
+    <file relUrl="bin/HebMorph.CorpusSearcher.dll" publishTime="06/20/2011 21:12:11" />
+    <file relUrl="Global.asax" publishTime="05/30/2011 17:50:22" />
+    <file relUrl="bin/Lucene.Net.Hebrew.dll" publishTime="06/20/2011 20:36:34" />
+    <file relUrl="Views/_ViewStart.cshtml" publishTime="05/30/2011 17:29:21" />
+    <file relUrl="Content/images/menu.jpg" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Content/images/square-green.png" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="bin/Lucene.Net.Hebrew.pdb" publishTime="06/20/2011 20:36:34" />
+    <file relUrl="Content/images/clock.gif" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="bin/Lucene.Net.Contrib.dll" publishTime="06/10/2011 02:22:41" />
+    <file relUrl="Content/images/firefox-gray.jpg" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Content/images/header.jpg" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Views/Account/ChangePasswordSuccess.cshtml" publishTime="05/30/2011 17:29:21" />
+    <file relUrl="bin/Lucene.Net.Contrib.pdb" publishTime="06/10/2011 02:22:41" />
+    <file relUrl="bin/MarkdownSharp.dll" publishTime="05/30/2011 22:13:18" />
+    <file relUrl="Content/images/button-bg.jpg" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Views/Shared/_LogOnPartial.cshtml" publishTime="05/30/2011 19:39:18" />
+    <file relUrl="Views/Shared/Error.cshtml" publishTime="05/30/2011 17:29:21" />
+    <file relUrl="bin/HebMorph.CorpusSearcher.pdb" publishTime="06/20/2011 21:12:11" />
+    <file relUrl="Views/Home/About.cshtml" publishTime="06/17/2011 00:21:53" />
+    <file relUrl="Views/Home/Status.cshtml" publishTime="05/30/2011 21:28:14" />
+    <file relUrl="Content/images/Envision.css" publishTime="06/17/2011 00:05:34" />
+    <file relUrl="bin/Newtonsoft.Json.xml" publishTime="05/30/2011 22:45:24" />
+    <file relUrl="bin/MarkdownSharp.xml" publishTime="05/30/2011 22:13:18" />
+    <file relUrl="Views/Admin/Index.cshtml" publishTime="05/30/2011 21:29:52" />
+    <file relUrl="Content/thickbox-compressed.js" publishTime="06/16/2011 18:22:38" />
+    <file relUrl="Content/images/comment.gif" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="bin/ICSharpCode.SharpZipLib.dll" publishTime="05/31/2011 17:21:26" />
+    <file relUrl="Views/Account/ChangePassword.cshtml" publishTime="05/30/2011 17:29:21" />
+    <file relUrl="bin/Newtonsoft.Json.pdb" publishTime="05/30/2011 22:45:24" />
+    <file relUrl="bin/FastVectorHighlighter.Net.dll" publishTime="06/16/2011 15:49:11" />
+    <file relUrl="packages.config" publishTime="05/31/2011 17:21:29" />
+    <file relUrl="bin/System.Web.Mvc.xml" publishTime="01/04/2011 15:29:22" />
+    <file relUrl="Content/images/content.jpg" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Views/Home/Index.cshtml" publishTime="05/30/2011 19:56:52" />
+    <file relUrl="bin/System.Web.Mvc.dll" publishTime="01/05/2011 17:42:16" />
+    <file relUrl="bin/Newtonsoft.Json.dll" publishTime="05/30/2011 22:45:24" />
+    <file relUrl="Content/images/quote.gif" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Content/images/dots.jpg" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Scripts/jquery-1.4.4.min.js" publishTime="05/30/2011 17:29:20" />
+    <file relUrl="Content/images/bullet.gif" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="bin/HebMorph.CorpusReaders.pdb" publishTime="06/17/2011 12:17:13" />
+    <file relUrl="Views/Shared/_Layout.cshtml" publishTime="06/17/2011 00:29:23" />
+    <file relUrl="Content/images/loadingAnimation.gif" publishTime="06/16/2011 18:13:09" />
+    <file relUrl="Views/Shared/_SearchFormPartial.cshtml" publishTime="06/16/2011 21:09:15" />
+    <file relUrl="bin/Lucene.Net.dll" publishTime="06/02/2011 17:11:44" />
+    <file relUrl="Content/Site.css" publishTime="05/30/2011 19:57:39" />
+    <file relUrl="Content/images/footer.jpg" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="Content/images/page.gif" publishTime="06/16/2011 17:00:24" />
+    <file relUrl="bin/Lucene.Net.pdb" publishTime="06/02/2011 17:11:44" />
+    <file relUrl="bin/MarkdownSharp.pdb" publishTime="05/30/2011 22:13:18" />
+    <file relUrl="bin/FastVectorHighlighter.Net.pdb" publishTime="06/16/2011 15:49:11" />
+    <file relUrl="Web.config" publishTime="06/20/2011 21:07:20" />
+    <file relUrl="bin/HebMorph.pdb" publishTime="06/02/2011 20:01:09" />
+    <file relUrl="Views/Home/Search.cshtml" publishTime="06/17/2011 01:13:07" />
+    <file relUrl="Content/thickbox.css" publishTime="06/16/2011 18:13:07" />
+    <file relUrl="Views/Account/LogOn.cshtml" publishTime="05/30/2011 17:29:21" />
+    <file relUrl="bin/HebMorph.dll" publishTime="06/02/2011 20:01:09" />
+    <file relUrl="Scripts/jquery.validate.min.js" publishTime="05/30/2011 17:29:20" />
+    <file relUrl="Views/Web.config" publishTime="06/16/2011 19:22:42" />
+    <file relUrl="bin/HebMorph.CorpusReaders.dll" publishTime="06/17/2011 12:17:13" />
+  </publishProfile>
+</publishData>

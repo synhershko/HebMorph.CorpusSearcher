@@ -38,7 +38,7 @@
         <!-- content-wrap starts here -->
 		<div id="content-wrap">
 			<div id="sidebar">
-                @Html.Partial("_SearchFormPartial", (HebMorph.CorpusSearcher.ViewModels.SearchQuery)ViewBag.Query)
+                @Html.Partial("_SearchFormPartial", ViewBag.Query != null ? (HebMorph.CorpusSearcher.ViewModels.SearchQuery)ViewBag.Query : new HebMorph.CorpusSearcher.ViewModels.SearchQuery())
 					
 				<h3>Links</h3>
 				<ul class="sidemenu">				
