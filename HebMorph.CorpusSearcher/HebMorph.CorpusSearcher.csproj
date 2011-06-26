@@ -81,7 +81,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Core\FormattingHelper.cs" />
-    <Compile Include="Core\HtmlFregmentsBuilder.cs" />
+    <Compile Include="Core\CustomFragmentsBuilder.cs" />
     <Compile Include="Core\HtmlMorphAnalyzer.cs" />
     <Compile Include="Core\HtmlStandardAnalyzer.cs" />
     <Compile Include="Core\Index.cs" />

@@ -295,7 +295,7 @@ namespace HebMorph.CorpusSearcher.Core
 			var fvh = new FastVectorHighlighter(FastVectorHighlighter.DEFAULT_PHRASE_HIGHLIGHT,
 			                                    FastVectorHighlighter.DEFAULT_FIELD_MATCH,
 												new SimpleFragListBuilder(),
-												new HtmlFragmentsBuilder("Content", new String[] { "[b]" }, new String[] { "[/b]" }));
+												new CustomFragmentsBuilder("Content", new String[] { "[b]" }, new String[] { "[/b]" }));
 
 			Query query = null;
 			if (searchQuery.SearchType == SearchType.LuceneDefault)
