@@ -15,7 +15,7 @@ namespace HebMorph.CorpusSearcher
 					var webConfig = WebConfigurationManager.OpenWebConfiguration("~/Web.config");
 					var docsPathSetting = webConfig.AppSettings.Settings["DataPath"];
 					if (docsPathSetting != null)
-						baseDataPath = HttpContext.Current.Server.MapPath(docsPathSetting.Value);
+						baseDataPath = Path.GetFullPath(docsPathSetting.Value);
 					else
 						return HttpContext.Current.Server.MapPath("~/App_Data"); // don't cache this
 				}
@@ -58,7 +58,7 @@ namespace HebMorph.CorpusSearcher
 		{
 			get
 			{
-				if (baseDataPath == null)
+				if (gaAccount == null)
 				{
 					gaAccount = string.Empty;
 					var webConfig = WebConfigurationManager.OpenWebConfiguration("~/Web.config");

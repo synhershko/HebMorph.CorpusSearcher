@@ -8,3 +8,6 @@ bin
 *.sdf
 Indexes
 TestProject1
+Web.*.Config
+_Publish
+*.Publish.xml
