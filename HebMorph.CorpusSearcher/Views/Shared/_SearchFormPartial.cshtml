@@ -4,10 +4,11 @@
 {
     <p><input type="text" class="textbox" id="query" name="query" value="@Model.Query" /><input class="button" type="submit" value="חפש" /></p>
     <p>&nbsp;</p>
-    <p><b>קורפוס:</b> @Html.DropDownList("corpusName", Model.AvailableIndexes)</p>
-    <p><b>סוג חיפוש:</b></p>
-    <p>@Html.RadioButton("searchType", "Morphologic", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.Morphologic) מורפולוגי</p>
-    <p>@Html.RadioButton("searchType", "AsTyped", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.AsTyped) כפי שהוקלד</p>
-    <p>@Html.RadioButton("searchType", "LuceneDefault", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.LuceneDefault) ללא שימוש ב-HebMorph</p>
+    <p><b>קורפוס - Corpus:</b> @Html.DropDownList("corpusName", Model.AvailableIndexes)</p>
+    <p>&nbsp;</p>
+    <p><b>סוג חיפוש - Search type:</b></p>
+    <p>@Html.RadioButton("searchType", "Morphologic", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.Morphologic) מורפולוגי - Morphologic</p>
+    <p>@Html.RadioButton("searchType", "AsTyped", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.AsTyped) כפי שהוקלד - As typed</p>
+    <p>@Html.RadioButton("searchType", "LuceneDefault", Model.SearchType == HebMorph.CorpusSearcher.Core.Index.SearchType.LuceneDefault) With no help from HebMorph</p>
 }
 </div>

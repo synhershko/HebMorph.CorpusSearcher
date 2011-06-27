@@ -64,7 +64,7 @@ namespace HebMorph.CorpusSearcher
 					var webConfig = WebConfigurationManager.OpenWebConfiguration("~/Web.config");
 					var gaAccountSetting = webConfig.AppSettings.Settings["GAAccount"];
 					if (gaAccountSetting != null)
-						gaAccount = HttpContext.Current.Server.MapPath(gaAccountSetting.Value);
+						gaAccount = gaAccountSetting.Value;
 				}
 				return gaAccount;
 			}
