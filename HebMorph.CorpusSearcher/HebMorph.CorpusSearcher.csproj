@@ -40,12 +40,28 @@
     <Reference Include="FastVectorHighlighter.Net">
       <HintPath>..\SharedLibs\FastVectorHighlighter.Net.dll</HintPath>
     </Reference>
+    <Reference Include="HebMorph, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1017c86a331b5f37, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\HebMorph.dll</HintPath>
+    </Reference>
+    <Reference Include="HebMorph.CorpusReaders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\HebMorph.CorpusReaders.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=2.9.2.2, Culture=neutral, PublicKeyToken=02f879aa45933051, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Lucene.Net.Contrib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SharedLibs\Lucene.Net.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net.Hebrew, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1017c86a331b5f37, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\Lucene.Net.Hebrew.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
@@ -164,24 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Dev\Libraries\Lucene.Net\trunk\C#\src\Lucene.Net\Lucene.Net.4.csproj">
-      <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
-      <Name>Lucene.Net.4</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HebMorph\dotNet\HebMorph\HebMorph.VS2010.csproj">
-      <Project>{EF21A9E0-8FEE-43CD-8D60-B3696E033FED}</Project>
-      <Name>HebMorph.NET4</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HebMorph\dotNet\Lucene.Net.Analysis.Hebrew\Lucene.Net.Hebrew.VS2010.csproj">
-      <Project>{53318212-385E-457B-8E5F-DDB117032A86}</Project>
-      <Name>Lucene.Net.Hebrew.NET4</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HSpellCoverageTester\HebMorph.CorpusReaders\HebMorph.CorpusReaders.csproj">
-      <Project>{EE237190-F52A-47FC-8BAA-D03445A11172}</Project>
-      <Name>HebMorph.CorpusReaders</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Status.cshtml" />
