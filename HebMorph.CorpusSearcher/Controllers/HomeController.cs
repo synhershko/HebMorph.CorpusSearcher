@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
+using HebMorph.CorpusSearcher.Helpers;
 using HebMorph.CorpusSearcher.ViewModels;
 using Lucene.Net.QueryParsers;
 
@@ -64,16 +66,14 @@ namespace HebMorph.CorpusSearcher.Controllers
 
 		public ActionResult ViewDocument(string corpusName, int indexDocId)
 		{
-			ViewBag.Query = new SearchQuery();
-
 			var doc = Core.Index.Instance.GetDocument(corpusName, indexDocId);
+			return View(doc.ToViewDocument());
+		}
 
-			return View(new Document
-			            	{
-			            		Content = MvcHtmlString.Create(doc.Content),
-			            		Id = doc.Id,
-			            		Title = MvcHtmlString.Create(doc.Title)
-			            	});
+		public ActionResult MoreLikeThis(string corpusName, int indexDocId)
+		{
+			var docs = Core.Index.Instance.GetMoreLikeThis(corpusName, indexDocId, 10);
+			return View(docs.Select(x => x.ToViewDocument()));
 		}
 	}
 }

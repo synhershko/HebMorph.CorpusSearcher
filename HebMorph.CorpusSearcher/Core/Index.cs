@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using HebMorph.CorpusReaders;
 using HebMorph.CorpusSearcher.ViewModels;
@@ -15,6 +16,7 @@ using Lucene.Net.Search;
 using Lucene.Net.Search.Vectorhighlight;
 using Lucene.Net.Store;
 using Newtonsoft.Json.Linq;
+using Similarity.Net;
 using Directory = System.IO.Directory;
 using Document = Lucene.Net.Documents.Document;
 
@@ -358,6 +360,36 @@ namespace HebMorph.CorpusSearcher.Core
 			          		Title = doc.Get("Title")
 			          	};
 			ret.SetContent(doc.Get("Content"), CorpusDocument.ContentFormat.Html);
+			return ret;
+		}
+
+		public IList<CorpusDocument> GetMoreLikeThis(string indexName, int indexDocumentId, int maxDocs)
+		{
+			// See: http://lucene.apache.org/java/2_2_0/api/org/apache/lucene/search/similar/MoreLikeThis.html
+
+			var searcher = GetSearcher(indexName);
+			var mlt = new MoreLikeThis(searcher.GetIndexReader());
+			mlt.SetAnalyzer(GetAnalyzer(SearchType.Morphologic));
+			mlt.SetFieldNames(new string[] {"Title", "Content"});
+			mlt.SetMinWordLen(4); // to avoid most Hebrew ambigous stop-words
+
+			var query = mlt.Like(indexDocumentId);
+
+			var tsdc = TopScoreDocCollector.create(maxDocs, true);
+			searcher.Search(query, tsdc);
+			var hits = tsdc.TopDocs().scoreDocs;
+
+			var ret = new List<CorpusDocument>(maxDocs);
+
+			foreach (var hit in hits)
+			{
+				var d = searcher.Doc(hit.doc);
+				ret.Add(new CorpusDocument
+				        	{
+				        		Id = d.Get("Id"),
+				        		Title = d.Get("Title"),
+				        	});
+			}
 			return ret;
 		}
 	}

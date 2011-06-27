@@ -20,8 +20,9 @@
 <div class="searchResults">
 @foreach (var result in Model)
 {
-    <h3><a href="ViewDocument?corpusName=@ViewBag.CorpusName&indexDocId=@result.LuceneDocId&height=450&width=800" class="thickbox">@result.Title</a> (@String.Format("{0:0.00}", result.Score))</h3>
+    <h3><a href="ViewDocument?corpusName=@ViewBag.CorpusName&indexDocId=@result.LuceneDocId&height=450&width=800" class="thickbox">@result.Title</a></h3>
     <p>@result.Fragment</p>
+    <p class="searchResultInfo">Score: @String.Format("{0:0.00}", result.Score) - <a href="MoreLikeThis?corpusName=@ViewBag.CorpusName&indexDocId=@result.LuceneDocId&height=450&width=600" class="thickbox">Related content</a></p>
 }
 </div>
 
