@@ -1,5 +1,10 @@
-﻿/* This file is taken from ScrewTurn C# wiki. It is released under GPL v2.0. I believe there is no copyright infringement here
- * as I'm going to release my code as GPL as well. */
+﻿/* This file is taken from ScrewTurn C# wiki: http://www.screwturn.eu/
+ * Permission was granted from the authors to be used in a non-GPLv2 compatible
+ * project as long as this header is intact.
+ * 
+ * Note this is an old version of the formatter, and has went through several
+ * breaking changes to make it work for He-Wikipedia and HebMorph.
+ */
 
 using System;
 using System.Collections.Generic;
