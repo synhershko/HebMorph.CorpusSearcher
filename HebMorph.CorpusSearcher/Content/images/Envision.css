@@ -408,3 +408,28 @@ input.button {
 .searchResults h3 a {text-decoration:underline;}
 .searchResults p {padding-top:0;}
 .error {border: 1px solid red; color:Red;}
+
+.documentViewer {font-family: sans-serif;color:Black;font-size: 8pt;}
+.documentViewer p {font-family: sans-serif;margin: .4em 0 .5em 0;line-height: 1.5em;}
+.documentViewer h1, .documentViewer h2, .documentViewer h3, .documentViewer h4, .documentViewer h5, .documentViewer h6 
+{
+	font-family: sans-serif;
+color: black;
+background: none;
+font-weight: normal;
+margin: 0;
+overflow: hidden;
+padding-top: .5em;
+padding-bottom: .17em;
+border-bottom: 1px solid #AAA;
+width: auto;
+}
+
+.documentViewer h1{
+margin-top: 0;
+padding-top: 0;
+margin-bottom: 0.1em;
+line-height: 1.2em;
+font-size: 1.6em;
+padding-bottom: 0;
+}
