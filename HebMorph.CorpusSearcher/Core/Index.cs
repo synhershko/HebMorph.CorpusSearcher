@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 using System.Web.Mvc;
 using HebMorph.CorpusReaders;
 using HebMorph.CorpusSearcher.ViewModels;
@@ -18,7 +17,6 @@ using Lucene.Net.Store;
 using Newtonsoft.Json.Linq;
 using Directory = System.IO.Directory;
 using Document = Lucene.Net.Documents.Document;
-using SimpleAnalyzer = Lucene.Net.Analysis.SimpleAnalyzer;
 
 namespace HebMorph.CorpusSearcher.Core
 {
@@ -291,13 +289,8 @@ namespace HebMorph.CorpusSearcher.Core
 			if (searcher == null)
 				throw new ArgumentException("Index not found: " + searchQuery.IndexName);
 
-			// Init
-			var fvh = new FastVectorHighlighter(FastVectorHighlighter.DEFAULT_PHRASE_HIGHLIGHT,
-			                                    FastVectorHighlighter.DEFAULT_FIELD_MATCH,
-												new SimpleFragListBuilder(),
-												new CustomFragmentsBuilder("Content", new String[] { "[b]" }, new String[] { "[/b]" }));
-
-			Query query = null;
+			// Parse query, possibly throwing a ParseException
+			Query query;
 			if (searchQuery.SearchType == SearchType.LuceneDefault)
 			{
 				query = MultiFieldQueryParser.Parse(Lucene.Net.Util.Version.LUCENE_29, searchQuery.Query,
@@ -307,6 +300,21 @@ namespace HebMorph.CorpusSearcher.Core
 				                                          searchFields, searchFlags, GetAnalyzer(searchQuery.SearchType));
 			}
 
+			// Log search, if doc-store exists
+			if (MvcApplication.RavenDocStore != null)
+			{
+				using (var session = MvcApplication.RavenDocStore.OpenSession())
+				{
+					session.Store(searchQuery);
+					session.SaveChanges();
+				}
+			}
+
+			// Init
+			var fvh = new FastVectorHighlighter(FastVectorHighlighter.DEFAULT_PHRASE_HIGHLIGHT,
+												FastVectorHighlighter.DEFAULT_FIELD_MATCH,
+												new SimpleFragListBuilder(),
+												new CustomFragmentsBuilder("Content", new String[] { "[b]" }, new String[] { "[/b]" }));
 			var contentFieldName = searchQuery.SearchType == SearchType.LuceneDefault ? "ContentDefault" : "Content";
 
 			// Perform actual search

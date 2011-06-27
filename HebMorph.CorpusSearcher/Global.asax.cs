@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using Raven.Client.Document;
 
 namespace HebMorph.CorpusSearcher
 {
@@ -8,6 +9,8 @@ namespace HebMorph.CorpusSearcher
 
 	public class MvcApplication : System.Web.HttpApplication
 	{
+		public static DocumentStore RavenDocStore { get; private set; }
+
 		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
 			filters.Add(new HandleErrorAttribute());
@@ -42,11 +45,26 @@ namespace HebMorph.CorpusSearcher
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
+
+			// Open doc-store, but make this optional
+			try
+			{
+				RavenDocStore = new DocumentStore
+									{
+										ConnectionStringName = "RavenConnStr"
+									};
+				RavenDocStore.Initialize();
+			}
+			catch (System.ArgumentException)
+			{
+				RavenDocStore = null;
+			}
 		}
 
 		protected void Application_End()
 		{
 			Core.Index.Instance.CleanUp();
+			RavenDocStore.Dispose();
 		}
 	}
 }
