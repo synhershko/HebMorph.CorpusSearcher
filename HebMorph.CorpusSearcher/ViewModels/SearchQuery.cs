@@ -2,6 +2,7 @@
 using HebMorph.CorpusSearcher.Core;
 using HebMorph.CorpusSearcher.Helpers;
 using Lucene.Net.QueryParsers;
+using Newtonsoft.Json;
 
 namespace HebMorph.CorpusSearcher.ViewModels
 {
@@ -31,7 +32,9 @@ namespace HebMorph.CorpusSearcher.ViewModels
 		}
 		private string indexName;
 
+		[JsonIgnore]
 		public SelectList AvailableIndexes { get; private set; }
+
 		public int CurrentPage { get; set; }
 
 		public string GetSearchUrl()
